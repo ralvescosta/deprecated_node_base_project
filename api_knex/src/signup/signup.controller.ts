@@ -1,14 +1,10 @@
 import { Request, Response } from 'express'
-import knex from '../knex/knex'
 import bcrypt from 'bcryptjs'
-import { HASH_SALT } from '../config/env'
 
-interface User {
-  id: number
-  name: string,
-  email: string
-  password: string
-}
+import { HASH_SALT } from '../core/config/env'
+import { User } from '../core/models/users.mode'
+
+import knex from '../core/database'
 
 export class SignUpController {
   async create (req: Request, res: Response) {
@@ -22,7 +18,7 @@ export class SignUpController {
 
     const { name, email, password } = req.body
 
-    const isEmailAlreadyRegistered = await knex('users').where({ email }).select('id')
+    const isEmailAlreadyRegistered = await knex<User>('users').where({ email }).select('id')
 
     if (isEmailAlreadyRegistered.length) {
       return res.status(409).json({ statusCode: 409, message: 'Email Already Registered' })
@@ -30,7 +26,7 @@ export class SignUpController {
 
     const passwordHash = await bcrypt.hash(password, HASH_SALT)
 
-    await knex('users').insert({ name, email, password: passwordHash })
+    await knex('users').insert<User>({ name, email, password: passwordHash })
 
     res.status(201).json({})
   }

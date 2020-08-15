@@ -8,7 +8,7 @@ export = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: './src/migrations'
+      directory: './src/core/database/migrations'
     },
     useNullAsDefault: true,
     timezone: 'UTC'

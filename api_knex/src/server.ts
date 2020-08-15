@@ -3,7 +3,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 
-import { signUpRoute } from './signup/routes'
+import { routes } from './routes'
 
 export function createServer (): Application {
   const server = express()
@@ -12,7 +12,7 @@ export function createServer (): Application {
   server.use(helmet())
   server.use(bodyParser.json())
 
-  server.use('/signup', signUpRoute)
+  server.use(routes)
 
   return server
 }
