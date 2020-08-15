@@ -1,5 +1,5 @@
 import { IController } from '../shared/interfaces/controller.interface'
-import { HttpResponse, HttpRequest, conflict, serverError, created, unsupportedMediaType } from '../shared/interfaces/http.adapt'
+import { HttpResponse, HttpRequest, conflict, serverError, created, unsupportedMediaType } from '../shared/adapters/http.adapt'
 import { UserSignUpModel } from './user.signup.model'
 import { IUserSignUpRepository } from './interfaces/user.signup.repository.interface'
 import { IHasher } from './interfaces/hasher.interface'

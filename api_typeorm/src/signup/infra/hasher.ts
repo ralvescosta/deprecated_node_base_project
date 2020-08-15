@@ -1,4 +1,4 @@
-import { IHasher } from 'signin/interfaces/hasher.interface'
+import { IHasher } from '../interfaces/hasher.interface'
 import bcrypt from 'bcryptjs'
 
 export class Hasher implements IHasher {
