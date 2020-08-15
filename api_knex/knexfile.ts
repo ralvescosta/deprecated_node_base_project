@@ -1,0 +1,16 @@
+require('ts-node/register')
+
+export = {
+  development: {
+    client: 'sqlite',
+    connection: {
+      filename: './SQLite/sqlite.db'
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+      directory: './src/migrations'
+    },
+    useNullAsDefault: true,
+    timezone: 'UTC'
+  }
+}
