@@ -1,11 +1,14 @@
-import { UserSignUpModel } from '../user.signup.model'
-import { IUserSignUpRepository } from '../interfaces/user.signup.repository.interface'
 import { getRepository } from 'typeorm'
-import { User } from '../../shared/models/users'
+
+import { UserSignUpModel } from '../domain/user.signup.model'
+
+import { IUserSignUpRepository } from '../data/protocols/user.signup.repository.interface'
+
+import { UserEntity } from '../../core/infra/entities/users.entity'
 
 export class UserSignUpRepository implements IUserSignUpRepository {
   public async findByEmail (email: string): Promise<boolean> {
-    const userRepository = getRepository<User>(User)
+    const userRepository = getRepository<UserEntity>(UserEntity)
 
     const userId = await userRepository.findOne({ where: { email }, select: ['id'] })
 
@@ -13,7 +16,7 @@ export class UserSignUpRepository implements IUserSignUpRepository {
   }
 
   public async createUser (userParams: UserSignUpModel): Promise<{} | Error> {
-    const userRepository = getRepository<User>(User)
+    const userRepository = getRepository<UserEntity>(UserEntity)
 
     await userRepository.save(userParams)
 

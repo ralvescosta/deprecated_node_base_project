@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { createServer } from './server'
-import { PORT } from './config/env'
+import { PORT } from './core/config/env'
 import { createConnection as createDatabaseConnection } from 'typeorm'
 
 async function bootstrap (): Promise<void> {

@@ -1,4 +1,4 @@
-import { UserSignUpModel } from '../user.signup.model'
+import { UserSignUpModel } from '../../domain/user.signup.model'
 
 export interface IUserSignUpRepository {
   findByEmail(email: string): Promise<boolean>

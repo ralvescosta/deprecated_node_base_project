@@ -1,5 +1,6 @@
-import { IHasher } from '../interfaces/hasher.interface'
 import bcrypt from 'bcryptjs'
+
+import { IHasher } from '../data/protocols/hasher.interface'
 
 export class Hasher implements IHasher {
   constructor (

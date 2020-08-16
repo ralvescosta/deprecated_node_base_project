@@ -1,8 +1,10 @@
-import { IController } from '../shared/interfaces/controller.interface'
-import { HttpResponse, HttpRequest, conflict, serverError, created, unsupportedMediaType } from '../shared/adapters/http.adapt'
-import { UserSignUpModel } from './user.signup.model'
-import { IUserSignUpRepository } from './interfaces/user.signup.repository.interface'
-import { IHasher } from './interfaces/hasher.interface'
+import { IController } from '../../core/interfaces/controller.interface'
+import { HttpResponse, HttpRequest, conflict, serverError, created, unsupportedMediaType } from '../../core/adapters/http.adapt'
+
+import { UserSignUpModel } from '../domain/user.signup.model'
+
+import { IUserSignUpRepository } from './protocols/user.signup.repository.interface'
+import { IHasher } from './protocols/hasher.interface'
 
 export class SignUpController implements IController {
   constructor (

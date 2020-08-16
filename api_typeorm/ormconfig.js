@@ -8,12 +8,12 @@ module.exports = {
   synchronize: true,
   logging: true,
   entities: [
-    'src/models/**/*.ts'
+    'src/core/infra/entities/*.entity.ts'
   ],
   migrations: [
-    'src/migration/**/*.ts'
+    'src/core/infra/migration/**/*.ts'
   ],
   subscribers: [
-    'src/subscriber/**/*.ts'
+    'src/core/infra/subscriber/**/*.ts'
   ]
 }

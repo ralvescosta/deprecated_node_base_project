@@ -1,8 +1,11 @@
 import { Router } from 'express'
-import { SignUpController } from '../signup.controller'
+
 import { UserSignUpRepository } from './user.signup.repository'
 import { Hasher } from './hasher'
-import { adaptRoute } from './adapters/express.router.adapt'
+
+import { SignUpController } from '../data/signup.controller'
+
+import { adaptRoute } from '../../core/adapters/express.router.adapt'
 
 const signUnRoutes = Router()
 
