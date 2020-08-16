@@ -5,14 +5,14 @@ const sequelizeConnection = new Sequelize(
   {
     storage: config.development.storage,
     dialect: config.development.dialect as 'sqlite',
-    logging: true
+    logging: () => true
   }
 )
 
-const models = {
+// const models = {
 
-}
+// }
 
-Object.assign(models, { sequelize: sequelizeConnection, Sequelize: Sequelize })
+// Object.assign(models, { sequelize: sequelizeConnection, Sequelize: Sequelize })
 
-export default models
+export default sequelizeConnection
