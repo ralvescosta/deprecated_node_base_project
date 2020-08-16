@@ -3,6 +3,8 @@ import cors from 'cors'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 
+import { routes } from './routes'
+
 export function createServer (): Application {
   const server = express()
 
@@ -10,7 +12,7 @@ export function createServer (): Application {
   server.use(helmet())
   server.use(bodyParser.json())
 
-  server.get('/', (req, res) => res.send('Hello Word'))
+  server.use(routes)
 
   return server
 }
