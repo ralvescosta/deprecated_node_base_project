@@ -1,0 +1,6 @@
+{
+  "ignore": ["node_modules"],
+  "execMap" : {
+    "ts": "node --require ts-node/register"
+  }
+}
