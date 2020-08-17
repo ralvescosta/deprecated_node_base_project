@@ -1,0 +1,11 @@
+- [x] Express API with Knex
+- [x] Express API with Sequelize
+- [x] Express API with TypeORM
+- [ ] Hapi API with Knex
+- [ ] Fastify API with Sequelize
+- [ ] NestJS API With Fastify and Sequelize
+- [ ] NestJS API With Express and TypeORM
+- [ ] GraphQL Apollo Server With Knex
+- [ ] NestJS GraphQL Server With Sequelize
+- [ ] Express with RabbitMQ
+- [ ] Express with gRPC
