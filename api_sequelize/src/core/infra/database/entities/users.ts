@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import Sequelize, { Model } from 'sequelize'
-import connection from './index'
+import connection from '../index'
 import { UserModel } from '../../../../signup/models/user.model'
 
 class User extends Model implements UserModel {
@@ -23,10 +23,8 @@ User.init(
     deletedAt: Sequelize.DATE
   },
   {
-    underscored: true,
     tableName: 'users',
-    sequelize: connection,
-    freezeTableName: true
+    sequelize: connection
   }
 )
 

@@ -1,18 +1,17 @@
 import { Sequelize } from 'sequelize'
-import config from '../config/config'
+import config from './config/config'
 
 const sequelizeConnection = new Sequelize(
   {
     storage: config.development.storage,
     dialect: config.development.dialect as 'sqlite',
-    logging: () => true
+    logging: () => true,
+    define: {
+      timestamps: true,
+      underscored: true,
+      freezeTableName: true
+    }
   }
 )
-
-// const models = {
-
-// }
-
-// Object.assign(models, { sequelize: sequelizeConnection, Sequelize: Sequelize })
 
 export default sequelizeConnection

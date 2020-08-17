@@ -1,5 +1,5 @@
 import { createServer } from './server'
-import DbConnection from './core/infra/database/entities/index'
+import DbConnection from './core/infra/database/index'
 
 async function bootstrap () {
   const PORT = process.env.PORT || 4000
