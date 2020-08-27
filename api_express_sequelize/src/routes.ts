@@ -7,8 +7,6 @@ import { Hasher } from './signup/infrastructure/hash/hasher'
 
 import { adaptRoute } from './signup/infrastructure/adapters/express.router.adapt'
 
-import { SignInController } from './signin/signin.controller'
-
 const routes = Router()
 
 const userSignUpRepository = new UserSignUpRepository()

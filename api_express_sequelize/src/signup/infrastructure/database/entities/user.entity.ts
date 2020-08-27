@@ -1,8 +1,8 @@
 import Sequelize, { Model } from 'sequelize'
 import connection from '../../../../core/infra/database'
-import { UserModel } from '../../../../signup/models/user.model'
+import { UserDatasource } from '../../../application/datasources/user.datasource'
 
-class User extends Model implements UserModel {
+class User extends Model implements UserDatasource {
   public id!: number;
   public name!: string;
   public email!: string;
