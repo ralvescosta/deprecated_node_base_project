@@ -1,6 +1,5 @@
-/* eslint-disable camelcase */
 import Sequelize, { Model } from 'sequelize'
-import connection from '../index'
+import connection from '../../../../core/infra/database'
 import { UserModel } from '../../../../signup/models/user.model'
 
 class User extends Model implements UserModel {

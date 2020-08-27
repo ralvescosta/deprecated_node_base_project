@@ -1,5 +1,5 @@
 export type HttpResponse = {
-  statusCode?: number
+  statusCode: number
   body: any
   headers?: any
 }
