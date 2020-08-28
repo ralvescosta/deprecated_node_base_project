@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "api-with-knex",
   "version": "1.0.0",
   "description": "API",
   "main": "src/index.ts",
@@ -11,6 +11,17 @@
     "migration:run": "yarn knex --knexfile knexfile.ts migrate:latest",
     "migration:create": "yarn knex --knexfile knexfile.ts -x ts migrate:make",
     "migrate:undo": "yarn knex --knexfile knexfile.ts migrate:rollback"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.4",
+    "sqlite3": "^5.0.0",
+    "tsc": "^1.20150623.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -30,16 +41,5 @@
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "helmet": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "knex": "^0.21.4",
-    "sqlite3": "^5.0.0",
-    "tsc": "^1.20150623.0"
   }
 }

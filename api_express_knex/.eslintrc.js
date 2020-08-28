@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    'no-useless-constructor': '0ff',
     'no-unused-vars': 'off'
   }
 }

@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
-import helmet from 'helmet'
 import cors from 'cors'
+import helmet from 'helmet'
 import bodyParser from 'body-parser'
 
 import { routes } from './routes'

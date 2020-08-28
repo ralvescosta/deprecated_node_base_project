@@ -1,4 +1,4 @@
-import knexfile from '../../../knexfile'
+import knexfile from '../../../../knexfile'
 import knex from 'knex'
 
 const Knex = knex(knexfile.development)
