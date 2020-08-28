@@ -7,7 +7,12 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "NODE_ENV=development yarn nodemon --inspect=0.0.0.0:9333 src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test:watch": "jest --watchAll --noStackTrace --runInBand",
+    "test:staged": "yarn test -- --findRelatedTests src/",
+    "test:cov": "jest --coverage",
+    "test:coveralls": "yarn run test:ci && coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -35,8 +40,10 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0",
+    "ts-jest": "^26.3.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }

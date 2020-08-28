@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "API",
   "main": "src/index.ts",
-  "author": "ralvescosta",
+  "author": "ralvescosta <rafael.rac.mg@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start:dev": "NODE_ENV=development yarn nodemon --inspect=0.0.0.0:9333 src/index.ts",
     "build": "tsc",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand",
+    "test:watch": "jest --watchAll --noStackTrace --runInBand",
+    "test:staged": "yarn test -- --findRelatedTests src/",
+    "test:cov": "jest --coverage",
+    "test:coveralls": "yarn run test:ci && coveralls < coverage/lcov.info",
     "migration:run": "yarn knex --knexfile knexfile.ts migrate:latest",
     "migration:create": "yarn knex --knexfile knexfile.ts -x ts migrate:make",
     "migrate:undo": "yarn knex --knexfile knexfile.ts migrate:rollback"
@@ -38,7 +43,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
+    "ts-jest": "^26.3.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }
