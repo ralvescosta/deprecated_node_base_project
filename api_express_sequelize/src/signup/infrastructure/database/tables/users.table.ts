@@ -2,7 +2,7 @@ import Sequelize, { Model } from 'sequelize'
 import connection from '../../../../core/infra/database'
 import { UserDatasource } from '../../../application/datasources/user.datasource'
 
-class User extends Model implements UserDatasource {
+class UsersTable extends Model implements UserDatasource {
   public id!: number;
   public name!: string;
   public email!: string;
@@ -12,7 +12,7 @@ class User extends Model implements UserDatasource {
   public readonly deletedAt!: Date;
 }
 
-User.init(
+UsersTable.init(
   {
     name: Sequelize.STRING,
     email: Sequelize.STRING,
@@ -27,4 +27,4 @@ User.init(
   }
 )
 
-export default User
+export default UsersTable

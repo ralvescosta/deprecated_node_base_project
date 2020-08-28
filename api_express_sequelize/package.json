@@ -3,11 +3,21 @@
   "version": "1.0.0",
   "description": "API",
   "main": "src/index.ts",
-  "author": "ralvescosta",
+  "author": "ralvescosta <rafael.rac.mg@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start:dev": "NODE_ENV=development yarn nodemon --inspect=0.0.0.0:9333 src/index.ts",
     "build": "tsc"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "sequelize": "^6.3.4",
+    "sqlite3": "^5.0.0",
+    "tsc": "^1.20150623.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -29,15 +39,5 @@
     "sequelize-cli": "^6.2.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "helmet": "^4.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "sequelize": "^6.3.4",
-    "sqlite3": "^5.0.0",
-    "tsc": "^1.20150623.0"
   }
 }

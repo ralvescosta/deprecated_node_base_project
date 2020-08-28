@@ -1,6 +1,7 @@
-import { HttpRequest, HttpResponse, badRequest, unsupportedMediaType, serverError, created } from '../../../core/adapters/http.adapt'
-import { ISignUp } from 'signup/bussiness/usecases/signup.usescase'
-import { Controller } from 'core/adapters/controllers'
+import { HttpRequest, HttpResponse, badRequest, unsupportedMediaType, serverError, conflict, created } from '../../../core/adapters/http.adapt'
+import { Controller } from '../../../core/adapters/controllers'
+import { AppErrors } from '../../../core/adapters/errors.enum'
+import { ISignUp } from '../../bussiness/usecases/signup.usescase'
 
 export class SignUpController implements Controller {
   constructor (
@@ -22,7 +23,12 @@ export class SignUpController implements Controller {
       const user = await this.signUpService.createUser(req.body)
       return created(user)
     } catch (err) {
-      return serverError({ body: {} })
+      switch (err.name) {
+        case AppErrors.ALREADY_EXIST_ERROR:
+          return conflict({ body: {} })
+        default:
+          return serverError({ body: {} })
+      }
     }
   }
 }
