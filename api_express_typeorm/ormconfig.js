@@ -8,7 +8,7 @@ module.exports = {
   synchronize: true,
   logging: true,
   entities: [
-    'src/core/infra/entities/*.entity.ts'
+    './src/**/tables/*.table.ts'
   ],
   migrations: [
     'src/core/infra/migration/**/*.ts'

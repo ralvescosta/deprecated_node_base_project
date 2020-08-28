@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "api-with-express-sequelize",
   "version": "1.0.0",
   "description": "API",
   "main": "src/index.ts",

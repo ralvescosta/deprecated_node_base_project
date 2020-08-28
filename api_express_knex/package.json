@@ -1,5 +1,5 @@
 {
-  "name": "api-with-knex",
+  "name": "api-with-express-knex",
   "version": "1.0.0",
   "description": "API",
   "main": "src/index.ts",

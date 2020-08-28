@@ -1,26 +1,18 @@
 import express, { Application } from 'express'
-import helmet from 'helmet'
 import cors from 'cors'
+import helmet from 'helmet'
 import bodyParser from 'body-parser'
 
-import { signUnRoutes } from './signup/infra/routes'
+import { routes } from './routes'
 
 export function createServer (): Application {
   const server = express()
 
-  /**
-   * EXPRESS SETUP
-   */
-  server.use(helmet())
   server.use(cors())
+  server.use(helmet())
   server.use(bodyParser.json())
-  /** */
 
-  /**
-   * ROUTES
-   */
-  server.use('/signup', signUnRoutes)
-  /** */
+  server.use(routes)
 
   return server
 }

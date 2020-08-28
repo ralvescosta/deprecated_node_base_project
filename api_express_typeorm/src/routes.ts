@@ -1,20 +1,32 @@
 import { Router } from 'express'
 
-import { UserSignUpRepository } from './signup/infra/user.signup.repository'
-import { Hasher } from './signup/infra/hasher'
+import { UserSignUp } from './signup/application/usecases/user.signup.usecase'
+import { SignUpController } from './signup/interfaces/controllers/signup.controller'
+import { UserSignUpRepository } from './signup/infrastructure/database/repositories/create.user.repository'
 
-import { SignUpController } from './signup/data/signup.controller'
+import { UserSignIn } from './signin/application/usecases/user.signin.usecase'
+import { SignInController } from './signin/interfaces/controllers/signin.controller'
+import { UserSignInRepository } from './signin/infrastructure/database/repositories/user.signin.reporitory'
 
-import { adaptRoute } from './core/adapters/express.router.adapt'
+import { Hasher } from './signup/infrastructure/hash/hasher'
+import { HasheCompare } from './signin/infrastructure/hash/hashe.compare'
+import { JWTSign } from './signup/infrastructure/jwt/create'
 
-import { HASH_SALT } from './core/config/env'
+import { adaptRoute } from './signup/infrastructure/adapters/express.router.adapt'
 
-const signUnRoutes = Router()
+const routes = Router()
 
 const userSignUpRepository = new UserSignUpRepository()
-const hasher = new Hasher(HASH_SALT)
-const signUpController = new SignUpController(userSignUpRepository, hasher)
+const hasher = new Hasher(8)
+const jwtSign = new JWTSign('123456', '8hours')
+const userSignUp = new UserSignUp(userSignUpRepository, hasher, jwtSign)
+const signUpController = new SignUpController(userSignUp)
+routes.post('/signup', adaptRoute(signUpController))
 
-signUnRoutes.post('/', adaptRoute(signUpController))
+const userSignInRepository = new UserSignInRepository()
+const hasheCompare = new HasheCompare()
+const userSignIn = new UserSignIn(userSignInRepository, hasheCompare, jwtSign)
+const signInController = new SignInController(userSignIn)
+routes.post('/signin', adaptRoute(signInController))
 
-export { signUnRoutes }
+export { routes }
