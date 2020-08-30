@@ -9,7 +9,7 @@ export class SignUpController implements Controller {
   ) {}
 
   public async handle (req: HttpRequest): Promise<HttpResponse> {
-    if (!req.body) {
+    if (!req.body || !Object.keys(req.body).length) {
       return badRequest({ body: {} })
     }
 
