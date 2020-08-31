@@ -8,19 +8,19 @@ export class SignUpController implements Controller {
     private signUpService: ISignUp
   ) {}
 
-  public async handle (req: HttpRequest): Promise<HttpResponse> {
-    if (!req.body) {
+  public async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    if (!httpRequest.body || !Object.keys(httpRequest.body).length) {
       return badRequest({ body: {} })
     }
 
-    const { name, email, password } = req.body
+    const { name, email, password } = httpRequest.body
 
     if (!name || !email || !password) {
       return unsupportedMediaType({ body: {} })
     }
 
     try {
-      const user = await this.signUpService.createUser(req.body)
+      const user = await this.signUpService.createUser(httpRequest.body)
       return created(user)
     } catch (err) {
       switch (err.name) {
