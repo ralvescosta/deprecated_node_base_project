@@ -19,7 +19,7 @@ export class SignInController implements Controller {
   ) {}
 
   public async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    if (!httpRequest.body) {
+    if (!httpRequest.body || !Object.keys(httpRequest.body).length) {
       return badRequest({ body: {} })
     }
 
@@ -37,6 +37,8 @@ export class SignInController implements Controller {
         case AppErrors.NOT_FOUND_ERROR:
           return notFound({ body: {} })
         case AppErrors.PASSWORD_WRONG_ERROR:
+          return unauthorized({ body: {} })
+        case AppErrors.UNAUTHORIZE_ERROR:
           return unauthorized({ body: {} })
         default:
           return serverError({ body: {} })
