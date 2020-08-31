@@ -11,7 +11,7 @@ function makeSut (): Hasher {
   return sut
 }
 
-describe('JWT Hasher', () => {
+describe('Hasher', () => {
   it('hash()', async () => {
     const sut = makeSut()
 
