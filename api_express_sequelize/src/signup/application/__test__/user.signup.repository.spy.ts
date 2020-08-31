@@ -4,12 +4,14 @@ import { UserDatasource } from '../datasources/user.datasource'
 
 export class UserSignUpRepositorySpy implements IUserSignUpRepository {
   public user = new UserDatasource(1, 'name', 'email', 'password', new Date(), new Date());
+  public email: string;
 
   public async create (model: CreateUserModel): Promise<UserDatasource> {
     return new UserDatasource(1, model.name, model.email, model.password, new Date(), new Date())
   }
 
   public async findByEmail (email: string): Promise<UserDatasource | undefined> {
+    this.email = email
     return this.user
   }
 }

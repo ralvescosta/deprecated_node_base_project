@@ -44,7 +44,6 @@ describe('User SignUp UseCase', () => {
 
   it('Should throw AlreadyExistError if findByEmail returns user instance', async () => {
     const { sut, userSignUpRepositorySpy } = makeSut()
-    jest.spyOn(userSignUpRepositorySpy, 'findByEmail').mockResolvedValueOnce(userSignUpRepositorySpy.user)
 
     const promise = sut.createUser(userSignUpRepositorySpy.user)
     await expect(promise).rejects.toThrow(new AlreadyExistError())
@@ -52,9 +51,9 @@ describe('User SignUp UseCase', () => {
 
   it('Should returns ResultCreateUserModel if user be created', async () => {
     const { sut, userSignUpRepositorySpy } = makeSut()
-    jest.spyOn(userSignUpRepositorySpy, 'findByEmail').mockResolvedValueOnce(undefined)
+    userSignUpRepositorySpy.user = undefined as any
 
-    const result = await sut.createUser(userSignUpRepositorySpy.user)
+    const result = await sut.createUser({ name: 'name', email: 'email', password: 'password' })
     expect(result).toBeInstanceOf(ResultCreateUserModel)
   })
 })
