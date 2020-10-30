@@ -1,5 +1,5 @@
 import { Either, left, right, BaseError } from '../../../core/business'
-import { UserEntity, User, AlreadyExistError } from '../../business'
+import { UserDTO, User, AlreadyExistError } from '../../business'
 
 import { IHasher } from '../protocols/ihasher'
 import { IRegisterUserRepository } from '../protocols/iregister.user.repository'
@@ -10,7 +10,7 @@ export class RegisterUserUsecase {
     private readonly _hash: IHasher
   ) {}
 
-  public async register (params: UserEntity): Promise<Either<BaseError, UserEntity>> {
+  public async register (params: UserDTO): Promise<Either<BaseError, UserDTO>> {
     const createUser = User.create({ name: params.name, email: params.email, password: params.password })
     if (createUser.isLeft()) {
       return left(createUser.value)
