@@ -1,6 +1,8 @@
 import { RegisterUserUsecase } from './application'
-import { RegisterUserRepository, Hasher, adaptRoute } from './infrastructure'
+import { RegisterUserRepository, Hasher } from './infrastructure'
 import { SigninController } from './interfaces'
+
+import { adaptRoute } from '../core/infrastructure'
 
 const hasher = new Hasher()
 const repository = new RegisterUserRepository()
