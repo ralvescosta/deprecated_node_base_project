@@ -39,5 +39,6 @@ export class SigninController extends BaseController {
     if (result.value instanceof InvalidPasswordError) {
       return this.badRequest({ message: 'Wrong password format' })
     }
+    return this.badRequest()
   }
 }

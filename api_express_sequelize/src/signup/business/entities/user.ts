@@ -1,7 +1,7 @@
 import { Email } from './email'
 import { Name } from './name'
 import { Password } from './password'
-import { UserEntity } from './user.entity'
+import { UserDTO } from './user.dto'
 import { Either, left, right, BaseError } from '../../../core/business'
 
 export class User {
@@ -13,7 +13,7 @@ export class User {
     Object.freeze(this)
   }
 
-  static create (props: UserEntity): Either<BaseError, User> {
+  public static create (props: UserDTO): Either<BaseError, User> {
     const name = Name.create(props.name)
     if (name.isLeft()) {
       return left(name.value)

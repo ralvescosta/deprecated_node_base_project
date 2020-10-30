@@ -13,7 +13,7 @@ export class Hasher implements IHasher {
       const digest = await toPromise(data, 8)
       return right(digest)
     } catch (err) {
-      console.log('SIGNIN MODULE - HASH ERR', err)
+      console.log('SIGNUP MODULE - HASH ERR', err)
       return left(new HasherError())
     }
   }
