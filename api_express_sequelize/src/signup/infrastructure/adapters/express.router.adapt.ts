@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { HttpRequest } from '../../../core/adapters/http.adapt'
-import { Controller } from '../../../core/adapters/controllers'
+import { IController } from '../../../core/adapters/icontrollers'
 
-export const adaptRoute = (controller: Controller) => {
+export const adaptRoute = (controller: IController) => {
   return async (req: Request, res: Response) => {
     const httpRequest: HttpRequest = {
       body: req.body
