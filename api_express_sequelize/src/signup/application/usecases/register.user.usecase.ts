@@ -23,7 +23,7 @@ export class RegisterUserUsecase {
       return left(userAlreadyCreated.value)
     }
 
-    if (userAlreadyCreated) {
+    if (userAlreadyCreated.value) {
       return left(new AlreadyExistError())
     }
 

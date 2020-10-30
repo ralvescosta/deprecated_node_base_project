@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import { signupRoute } from './signup/signup.module'
+import { signUpController } from './signup/signup.module'
 
 const routes = Router()
 
-routes.post('/signup', signupRoute)
+routes.post('/signup', (req, res) => signUpController.execute(req, res))
 
 export { routes }

@@ -1,1 +1,1 @@
-export * from './icontrollers'
+export * from './base.controller'

@@ -4,8 +4,10 @@ export type HttpResponse = {
   headers?: any
 }
 
-export type HttpRequest<TBody = any> = {
-  body?: TBody
+export type HttpRequest<B = any, P = any, Q = any> = {
+  body?: B,
+  params?: P,
+  query?: Q
 }
 
 export type ErrorParams = {

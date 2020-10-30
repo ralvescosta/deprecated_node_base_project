@@ -1,20 +1,27 @@
 import { RegisterUserUsecase } from '../../application'
-import { HttpRequest, HttpResponse, badRequest, serverError, success } from '../../../core/business'
-import { IController } from '../../../core/interfaces'
+import { BaseController } from '../../../core/interfaces'
 
-export class SigninController implements IController {
-  constructor (private readonly _usecase: RegisterUserUsecase) {}
-  public async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    const body = httpRequest.body
+export class SigninController extends BaseController {
+  constructor (private readonly _usecase: RegisterUserUsecase) {
+    super()
+  }
+
+  public async handle (): Promise<any> {
+    const body = this.req.body
+
     if (!body) {
-      return badRequest({ body: { message: 'Bad Request' } })
+      return this.badRequest()
+    }
+
+    if (!body.name || !body.email || !body.password) {
+      return this.badRequest({ message: 'email: string, body: string, password: string, are required' })
     }
 
     const result = await this._usecase.register(body)
     if (result.isLeft()) {
-      return serverError({ body: { message: 'internal server error' } })
+      return this.conflict()
     }
 
-    return success({})
+    return this.created(this.res)
   }
 }
