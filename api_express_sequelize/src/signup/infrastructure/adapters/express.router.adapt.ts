@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { HttpRequest } from '../../../core/adapters/http.adapt'
-import { IController } from '../../../core/adapters/icontrollers'
+import { HttpRequest } from '../../../core/business'
+import { IController } from '../../../core/interfaces'
 
 export const adaptRoute = (controller: IController) => {
   return async (req: Request, res: Response) => {

@@ -1,7 +1,9 @@
 import { Router } from 'express'
 
-import { adaptRoute } from './signup/infrastructure/adapters/express.router.adapt'
+import { signupRoute } from './signup/signup.module'
 
 const routes = Router()
+
+routes.post('/signup', signupRoute)
 
 export { routes }

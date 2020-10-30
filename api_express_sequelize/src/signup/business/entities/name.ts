@@ -1,29 +1,20 @@
 import { InvalidNameError } from '../errors/invalid.name.error'
-import { Either } from '../../../core/adapters/either'
+import { Either, left, right } from '../../../core/business'
 
 export class Name {
-  private readonly name: string;
-
-  private constructor (name: string) {
-    this.name = name
+  private constructor (private readonly _name: string) {
     Object.freeze(this)
   }
 
   public static create (name: string): Either<InvalidNameError, Name> {
     if (!Name.validate(name)) {
-      return {
-        left: new InvalidNameError(name),
-        right: undefined
-      }
+      return left(new InvalidNameError(name))
     }
-    return {
-      left: undefined,
-      right: new Name(name)
-    }
+    return right(new Name(name))
   }
 
   get value (): string {
-    return this.name
+    return this._name
   }
 
   public static validate (name: string): boolean {

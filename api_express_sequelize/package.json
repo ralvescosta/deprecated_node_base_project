@@ -11,8 +11,7 @@
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:watch": "jest --watchAll --noStackTrace --runInBand",
     "test:staged": "yarn test -- --findRelatedTests src/",
-    "test:cov": "jest --coverage",
-    "test:coveralls": "yarn run test:ci && coveralls < coverage/lcov.info"
+    "test:cov": "jest --coverage"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -1,29 +1,20 @@
 import { InvalidPasswordError } from '../errors/invalid.password.error'
-import { Either } from '../../../core/adapters/either'
+import { Either, left, right } from '../../../core/business'
 
 export class Password {
-  private readonly password: string;
-
-  private constructor (password: string) {
-    this.password = password
+  private constructor (private readonly _password: string) {
     Object.freeze(this)
   }
 
   public static create (password: string): Either<InvalidPasswordError, Password> {
     if (!Password.validate(password)) {
-      return {
-        left: new InvalidPasswordError(password),
-        right: undefined
-      }
+      return left(new InvalidPasswordError(password))
     }
-    return {
-      left: undefined,
-      right: new Password(password)
-    }
+    return right(new Password(password))
   }
 
   get value (): string {
-    return this.password
+    return this._password
   }
 
   public static validate (password: string): boolean {

@@ -1,30 +1,21 @@
 import { InvalidEmailError } from '../errors/invalid.email.error'
-import { Either } from '../../../core/adapters/either'
+import { Either, left, right } from '../../../core/business'
 
 export class Email {
-  private readonly email: string;
-
-  private constructor (email: string) {
-    this.email = email
+  private constructor (private readonly _email: string) {
     Object.freeze(this)
   }
 
   public static create (email: string): Either<InvalidEmailError, Email> {
     if (!Email.validate(email)) {
-      return {
-        left: new InvalidEmailError(email),
-        right: undefined
-      }
+      return left(new InvalidEmailError(email))
     }
 
-    return {
-      left: undefined,
-      right: new Email(email)
-    }
+    return right(new Email(email))
   }
 
   get value (): string {
-    return this.email
+    return this._email
   }
 
   public static validate (email: string): boolean {

@@ -2,48 +2,33 @@ import { Email } from './email'
 import { Name } from './name'
 import { Password } from './password'
 import { UserEntity } from './user.entity'
-import { Either } from '../../../core/adapters/either'
+import { Either, left, right, BaseError } from '../../../core/business'
 
 export class User {
-  public readonly name: Name
-  public readonly email: Email
-  public readonly password: Password
-
-  private constructor (name: Name, email: Email, password: Password) {
-    this.name = name
-    this.email = email
-    this.password = password
+  private constructor (
+    public readonly name: Name,
+    public readonly email: Email,
+    public readonly password?: Password
+  ) {
     Object.freeze(this)
   }
 
-  static create (props: UserEntity): Either<any, User> {
+  static create (props: UserEntity): Either<BaseError, User> {
     const name = Name.create(props.name)
-    if (name.left) {
-      return {
-        left: name.left,
-        right: undefined
-      }
+    if (name.isLeft()) {
+      return left(name.value)
     }
 
     const email = Email.create(props.email)
-    if (email.left) {
-      return {
-        left: email.left,
-        right: undefined
-      }
+    if (email.isLeft()) {
+      return left(email.value)
     }
 
     const password = Password.create(props.password)
-    if (password.left) {
-      return {
-        left: password.left,
-        right: undefined
-      }
+    if (password.isLeft()) {
+      return left(password.value)
     }
 
-    return {
-      left: undefined,
-      right: new User(name.right as Name, email.right as Email, password.right as Password)
-    }
+    return right(new User(name.value as Name, email.value as Email, password.value as Password))
   }
 }
