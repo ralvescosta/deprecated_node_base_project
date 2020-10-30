@@ -1,5 +1,7 @@
-import { RegisterUserUsecase } from '../../application'
+import { RegisterUserUsecase, HasherError, RepositoryError } from '../../application'
 import { BaseController } from '../../../core/interfaces'
+
+import { AlreadyExistError, InvalidEmailError, InvalidNameError, InvalidPasswordError } from '../../business'
 
 export class SigninController extends BaseController {
   constructor (private readonly _usecase: RegisterUserUsecase) {
@@ -18,10 +20,24 @@ export class SigninController extends BaseController {
     }
 
     const result = await this._usecase.register(body)
-    if (result.isLeft()) {
-      return this.conflict()
+    if (result.isRight()) {
+      return this.created(this.res)
     }
 
-    return this.created(this.res)
+    if (result.value instanceof (HasherError || RepositoryError)) {
+      return this.internalServerError('')
+    }
+    if (result.value instanceof AlreadyExistError) {
+      return this.conflict({ message: 'Email Already registered' })
+    }
+    if (result.value instanceof InvalidEmailError) {
+      return this.badRequest({ message: 'Wrong email format' })
+    }
+    if (result.value instanceof InvalidNameError) {
+      return this.badRequest({ message: 'Wrong name format' })
+    }
+    if (result.value instanceof InvalidPasswordError) {
+      return this.badRequest({ message: 'Wrong password format' })
+    }
   }
 }
