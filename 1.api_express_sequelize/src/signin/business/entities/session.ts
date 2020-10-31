@@ -29,4 +29,12 @@ export class Session {
 
     return right(new Session(name.value as Name, email.value as Email, props.accessToken))
   }
+
+  public toJSON () {
+    return {
+      name: this.name.value,
+      email: this.email.value,
+      accessToken: this.accessToken
+    }
+  }
 }

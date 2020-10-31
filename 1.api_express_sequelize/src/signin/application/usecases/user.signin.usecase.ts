@@ -16,7 +16,7 @@ export class UserSignInUsecase implements IUserSignIn {
     private readonly _createToken: IJwtCreateToken
   ) {}
 
-  public async createSession (params: any): Promise<Either<BaseError, Session>> {
+  public async createSession (params: any): Promise<Either<BaseError, any>> {
     const user: Either<BaseError, UserEntity | undefined> = await this._userRepository.findByEmail(params.email)
     if (user.isLeft()) {
       return left(user.value)
@@ -35,16 +35,16 @@ export class UserSignInUsecase implements IUserSignIn {
       return left(new WrongPasswordError())
     }
 
-    const accessToken = await this._createToken.sign({ id: user.value.id })
+    const accessToken:Either<BaseError, string> = await this._createToken.sign({ id: user.value.id })
     if (accessToken.isLeft()) {
       return left(accessToken.value)
     }
 
-    const session = Session.create({ name: user.value.name.value, email: user.value.email.value, accessToken: accessToken })
+    const session = Session.create({ name: user.value.name.value, email: user.value.email.value, accessToken: accessToken.value })
     if (session.isLeft()) {
       return left(session.value)
     }
 
-    return right(session.value)
+    return right(session.value.toJSON())
   }
 }
