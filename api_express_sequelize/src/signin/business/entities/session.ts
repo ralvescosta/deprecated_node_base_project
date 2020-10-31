@@ -1,6 +1,9 @@
 import { BaseError, Either, left, right } from '../../../core/business'
 import { Email, Name } from '../../../signup/business'
+
 import { SessionDTO } from './session.dto'
+
+import { AccessTokenNotProviderError } from '../errors/access.token.not.provider.error'
 
 export class Session {
   private constructor (
@@ -21,7 +24,7 @@ export class Session {
     }
 
     if (!props.accessToken) {
-      return left(new Error(''))
+      return left(new AccessTokenNotProviderError())
     }
 
     return right(new Session(name.value as Name, email.value as Email, props.accessToken))

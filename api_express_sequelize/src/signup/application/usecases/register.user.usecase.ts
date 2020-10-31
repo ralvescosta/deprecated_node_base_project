@@ -1,10 +1,10 @@
 import { Either, left, right, BaseError } from '../../../core/business'
-import { UserDTO, User, AlreadyExistError } from '../../business'
+import { UserDTO, User, AlreadyExistError, IRegisterUserUsecase } from '../../business'
 
 import { IHasher } from '../protocols/ihasher'
 import { IRegisterUserRepository } from '../protocols/iregister.user.repository'
 
-export class RegisterUserUsecase {
+export class RegisterUserUsecase implements IRegisterUserUsecase {
   constructor (
     private readonly _registerUserRepository: IRegisterUserRepository,
     private readonly _hash: IHasher

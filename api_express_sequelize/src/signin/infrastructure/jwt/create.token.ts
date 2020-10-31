@@ -2,7 +2,9 @@
 import JWT from 'jsonwebtoken'
 import { Either, left, right, BaseError } from '../../../core/business'
 
-export class JwtCreateToken {
+import { IJwtCreateToken, JwtError } from '../../application'
+
+export class JwtCreateToken implements IJwtCreateToken {
   public async sign (data: object): Promise<Either<BaseError, string>> {
     const toPromise = (): Promise<string> => new Promise((resolve, rejects) => {
       try {
@@ -18,7 +20,7 @@ export class JwtCreateToken {
       return right(token)
     } catch (err) {
       console.log('SIGNUP MODULE - JWT ERR', err)
-      return left(new Error(''))
+      return left(new JwtError())
     }
   }
 }

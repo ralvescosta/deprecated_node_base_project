@@ -1,8 +1,9 @@
 import { Either, left, right, BaseError } from '../../../core/business'
 
 import { UserEntity } from '../../business'
+import { IUserRepository } from '../../application'
 
-export class UserRepository {
+export class UserRepository implements IUserRepository {
   public async findByEmail (email: string): Promise<Either<BaseError, UserEntity>> {
     const user: Either<BaseError, UserEntity> = UserEntity.create({
       id: 1,

@@ -1,10 +1,10 @@
 import { RegisterUserUsecase, HasherError, RepositoryError } from '../../application'
 import { BaseController } from '../../../core/interfaces'
 
-import { AlreadyExistError, InvalidEmailError, InvalidNameError, InvalidPasswordError } from '../../business'
+import { AlreadyExistError, InvalidEmailError, InvalidNameError, InvalidPasswordError, IRegisterUserUsecase } from '../../business'
 
-export class SigninController extends BaseController {
-  constructor (private readonly _usecase: RegisterUserUsecase) {
+export class SignupController extends BaseController {
+  constructor (private readonly _usecase: IRegisterUserUsecase) {
     super()
   }
 

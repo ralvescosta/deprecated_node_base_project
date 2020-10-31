@@ -1,5 +1,5 @@
 import { IRegisterUserRepository, RepositoryError } from '../../application'
-import { UserEntity } from '../../business'
+import { UserDTO } from '../../business'
 
 import { Either, left, right } from '../../../core/business'
 
@@ -8,7 +8,7 @@ export class RegisterUserRepository implements IRegisterUserRepository {
     return right(false)
   }
 
-  public async create (props: UserEntity): Promise<Either<RepositoryError, boolean>> {
+  public async create (props: UserDTO): Promise<Either<RepositoryError, boolean>> {
     return right(true)
   }
 }

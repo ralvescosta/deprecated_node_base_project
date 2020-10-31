@@ -1,6 +1,8 @@
 import { Either, left, right } from '../../../core/business'
 import { Email, Name } from '../../../signup/business'
 
+import { DateNotProviderError } from '../errors/date.not.provider'
+
 export class UserEntity {
   private constructor (
     public readonly id: number,
@@ -24,6 +26,9 @@ export class UserEntity {
       return left(email.value)
     }
 
+    if (!params.createdAt || !params.updatedAt) {
+      return left(new DateNotProviderError())
+    }
     const createdAt = new Date(params.createdAt)
     const updatedAt = new Date(params.updatedAt)
 
