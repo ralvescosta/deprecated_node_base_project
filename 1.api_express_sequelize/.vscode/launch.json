@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only", "-r", "tsconfig-paths/register"],
+      "args": ["src/main.ts"],
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    },
+    {
+      "type": "node",
+      "name": "Attach",
+      "request": "attach",
+      "protocol": "inspector",
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"],
+      "port": 9333
+    }
+  ]
+}

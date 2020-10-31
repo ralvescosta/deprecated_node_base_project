@@ -1,8 +1,0 @@
-const {resolve} = require('path');
-
-module.exports = {
-  config: resolve(__dirname, 'src', 'core', 'infra', 'database', 'config', 'config.js'),
-  'models-path': resolve(__dirname, 'src', '**', '*.entity.ts'),
-  'migrations-path': resolve(__dirname, 'src', 'core', 'infra', 'database', 'migrations'),
-  'seeders-path': resolve(__dirname, 'src', 'core', 'infra', 'database', 'seeders'),
-}
