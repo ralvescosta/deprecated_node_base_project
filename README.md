@@ -6,12 +6,13 @@ _This aplication is boilerplate to future implementations using clean architectu
 
 - The concepts and the application presented here is not an absolute truth, is only my opinion with basic architecture concepts that i learned with my works and my studies. If someone has some diferente opinions, feel free to create an issues so we can talk, i always want to learn more ;)
 
+- Each application implements same business logic, user registration (signup) and user session (signin). The principle idea is, when we follow best developments practices, when we need to change some frameworks, database or or anything external does not impact our application
+
 ## Samples:
 
 - [x] API with Express and Knex
 - [x] API with Express and Sequelize
 - [x] API with Express and TypeORM
-- [ ] API with Hapi and Knex
 - [ ] API with Fastify and Sequelize
 - [ ] API with NestJS and Fastify and Sequelize
 - [ ] API with NestJS and Express and TypeORM
