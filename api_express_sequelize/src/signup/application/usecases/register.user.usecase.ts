@@ -27,7 +27,7 @@ export class RegisterUserUsecase {
       return left(new AlreadyExistError())
     }
 
-    const passwordHash = await this._hash.hash(user.password?.value as string)
+    const passwordHash = await this._hash.hash(user.password.value as string)
     if (passwordHash.isLeft()) {
       return left(passwordHash.value)
     }

@@ -8,7 +8,7 @@ export class User {
   private constructor (
     public readonly name: Name,
     public readonly email: Email,
-    public readonly password?: Password
+    public readonly password: Password
   ) {
     Object.freeze(this)
   }

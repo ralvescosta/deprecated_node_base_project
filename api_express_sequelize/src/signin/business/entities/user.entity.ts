@@ -9,7 +9,9 @@ export class UserEntity {
     public readonly passwordHash: string,
     public readonly createdAt: Date,
     public readonly updatedAt: Date
-  ) {}
+  ) {
+    Object.freeze(this)
+  }
 
   public static create (params: any): Either<any, UserEntity> {
     const name = Name.create(params.name)
