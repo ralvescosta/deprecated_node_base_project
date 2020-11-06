@@ -1,3 +1,4 @@
+import { CreateSessionParams } from './create.session.params'
 import { BaseError, Either, left, right } from '../../../core/business'
 
 import { IUserSignIn, Session, User } from '../../business'
@@ -16,7 +17,7 @@ export class UserSignInUsecase implements IUserSignIn {
     private readonly _createToken: IJwtCreateToken
   ) {}
 
-  public async createSession (params: any): Promise<Either<BaseError, any>> {
+  public async createSession (params: CreateSessionParams): Promise<Either<BaseError, any>> {
     const user: Either<BaseError, User | undefined> = await this._userRepository.findByEmail(params.email)
     if (user.isLeft()) {
       return left(user.value)

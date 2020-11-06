@@ -1,5 +1,5 @@
-import { BaseError } from 'sequelize/types'
-import { Either, left, right } from '../../../core/business'
+import { UserParams } from './user.params'
+import { Either, BaseError, left, right } from '../../../core/business'
 import { Email, Name } from '../../../signup/business'
 
 import { DateNotProviderError } from '../errors/date.not.provider'
@@ -16,7 +16,7 @@ export class User {
     Object.freeze(this)
   }
 
-  public static create (params: any): Either<BaseError, User> {
+  public static create (params: UserParams): Either<BaseError, User> {
     const name = Name.create(params.name)
     if (name.isLeft()) {
       return left(name.value)
