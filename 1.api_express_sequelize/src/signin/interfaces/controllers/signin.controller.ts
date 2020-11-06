@@ -2,10 +2,10 @@ import { BaseController } from '../../../core/interfaces'
 
 import { RepositoryError, HasheCompareError, JwtError, AccessTokenError, NotFoundError, WrongPasswordError } from '../../application'
 import { InvalidEmailError, InvalidPasswordError } from '../../../signup/business'
-import { IUserSignIn } from '../../business'
+import { IUserSignInUsecase } from '../../business'
 
 export class SigninController extends BaseController {
-  constructor (private readonly _usecase: IUserSignIn) {
+  constructor (private readonly _usecase: IUserSignInUsecase) {
     super()
   }
 

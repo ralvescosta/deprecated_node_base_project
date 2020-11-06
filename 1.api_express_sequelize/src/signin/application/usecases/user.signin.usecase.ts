@@ -1,7 +1,7 @@
 import { CreateSessionParams } from './create.session.params'
 import { BaseError, Either, left, right } from '../../../core/business'
 
-import { IUserSignIn, Session, User } from '../../business'
+import { IUserSignInUsecase, Session, User } from '../../business'
 
 import { NotFoundError } from '../errors/not.found.error'
 import { WrongPasswordError } from '../errors/wrong.password.error'
@@ -10,7 +10,7 @@ import { IJwtCreateToken } from '../protocols/icreate.token'
 import { IHashCompare } from '../protocols/ihash.compare'
 import { IUserRepository } from '../protocols/iuser.repository'
 
-export class UserSignInUsecase implements IUserSignIn {
+export class UserSignInUsecase implements IUserSignInUsecase {
   constructor (
     private readonly _userRepository: IUserRepository,
     private readonly _hashCompare: IHashCompare,
