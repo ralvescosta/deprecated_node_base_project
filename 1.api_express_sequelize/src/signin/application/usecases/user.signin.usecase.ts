@@ -1,6 +1,6 @@
 import { BaseError, Either, left, right } from '../../../core/business'
 
-import { IUserSignIn, Session, UserEntity } from '../../business'
+import { IUserSignIn, Session, User } from '../../business'
 
 import { NotFoundError } from '../errors/not.found.error'
 import { WrongPasswordError } from '../errors/wrong.password.error'
@@ -17,7 +17,7 @@ export class UserSignInUsecase implements IUserSignIn {
   ) {}
 
   public async createSession (params: any): Promise<Either<BaseError, any>> {
-    const user: Either<BaseError, UserEntity | undefined> = await this._userRepository.findByEmail(params.email)
+    const user: Either<BaseError, User | undefined> = await this._userRepository.findByEmail(params.email)
     if (user.isLeft()) {
       return left(user.value)
     }

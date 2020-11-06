@@ -1,9 +1,10 @@
+import { BaseError } from 'sequelize/types'
 import { Either, left, right } from '../../../core/business'
 import { Email, Name } from '../../../signup/business'
 
 import { DateNotProviderError } from '../errors/date.not.provider'
 
-export class UserEntity {
+export class User {
   private constructor (
     public readonly id: number,
     public readonly name: Name,
@@ -15,7 +16,7 @@ export class UserEntity {
     Object.freeze(this)
   }
 
-  public static create (params: any): Either<any, UserEntity> {
+  public static create (params: any): Either<BaseError, User> {
     const name = Name.create(params.name)
     if (name.isLeft()) {
       return left(name.value)
@@ -32,6 +33,6 @@ export class UserEntity {
     const createdAt = new Date(params.createdAt)
     const updatedAt = new Date(params.updatedAt)
 
-    return right(new UserEntity(params.id, name.value, email.value, params.password, createdAt, updatedAt))
+    return right(new User(params.id, name.value, email.value, params.password, createdAt, updatedAt))
   }
 }
