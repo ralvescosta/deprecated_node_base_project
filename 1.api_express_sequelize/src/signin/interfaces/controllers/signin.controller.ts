@@ -1,45 +1,46 @@
+import { HttpRequest, HttpResponse, success, badRequest, notFound, forbidden, internalServerError } from '../../../core/infrastructure'
 import { BaseController } from '../../../core/interfaces'
 
 import { RepositoryError, HasheCompareError, JwtError, AccessTokenError, NotFoundError, WrongPasswordError } from '../../application'
 import { InvalidEmailError, InvalidPasswordError } from '../../../signup/business'
 import { IUserSignInUsecase } from '../../business'
 
-export class SigninController extends BaseController {
-  constructor (private readonly _usecase: IUserSignInUsecase) {
-    super()
-  }
+export class SigninController implements BaseController {
+  constructor (
+    private readonly _usecase: IUserSignInUsecase
+  ) {}
 
-  public async handle (): Promise<any> {
-    const body = this.req.body
+  public async handle (request: HttpRequest): Promise<HttpResponse> {
+    const body = request.body
 
     if (!body) {
-      return this.badRequest()
+      return badRequest({})
     }
 
     if (!body.email || !body.password) {
-      return this.badRequest({ message: 'email: string, body: string, password: string, are required' })
+      return badRequest({ body: { message: 'email: string, password: string, are required' } })
     }
 
     const result = await this._usecase.createSession(body)
     if (result.isRight()) {
-      return this.success(this.res, result.value)
+      return success({ body: result.value.toJSON() })
     }
 
     if (result.value instanceof (RepositoryError || HasheCompareError || JwtError || AccessTokenError)) {
-      return this.internalServerError('')
+      return internalServerError({})
     }
     if (result.value instanceof NotFoundError) {
-      return this.notFound({ message: 'Email not registered' })
+      return notFound({ body: { message: 'Email not registered' } })
     }
     if (result.value instanceof WrongPasswordError) {
-      return this.forbidden({ message: 'Wrong password' })
+      return forbidden({ body: { message: 'Wrong password' } })
     }
     if (result.value instanceof InvalidEmailError) {
-      return this.badRequest({ message: 'Wrong email format' })
+      return badRequest({ body: { message: 'Wrong email format' } })
     }
     if (result.value instanceof InvalidPasswordError) {
-      return this.badRequest({ message: 'Wrong password format' })
+      return badRequest({ body: { message: 'Wrong password format' } })
     }
-    return this.badRequest()
+    return badRequest({})
   }
 }
