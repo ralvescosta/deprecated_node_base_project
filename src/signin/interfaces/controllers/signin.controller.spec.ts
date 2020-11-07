@@ -13,11 +13,11 @@ function makeSut () {
 
 describe('SigninController', () => {
   it('handle()', async () => {
-    const { userSignInUsecaseSpy } = makeSut()
+    const { sut, userSignInUsecaseSpy } = makeSut()
     jest.spyOn(userSignInUsecaseSpy, 'createSession')
 
-    // await sut.handle()
+    await sut.handle({ body: { email: 'email', password: 'password' } })
 
-    expect(true).toBeTruthy()
+    expect(userSignInUsecaseSpy.createSession).toHaveBeenCalledTimes(1)
   })
 })
