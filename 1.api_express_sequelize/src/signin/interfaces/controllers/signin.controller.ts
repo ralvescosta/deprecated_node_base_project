@@ -1,11 +1,11 @@
 import { HttpRequest, HttpResponse, success, badRequest, notFound, forbidden, internalServerError } from '../../../core/infrastructure'
-import { BaseController } from '../../../core/interfaces'
+import { IBaseController } from '../../../core/interfaces'
 
 import { RepositoryError, HasheCompareError, JwtError, AccessTokenError, NotFoundError, WrongPasswordError } from '../../application'
 import { InvalidEmailError, InvalidPasswordError } from '../../../signup/business'
 import { IUserSignInUsecase } from '../../business'
 
-export class SigninController implements BaseController {
+export class SigninController implements IBaseController {
   constructor (
     private readonly _usecase: IUserSignInUsecase
   ) {}
