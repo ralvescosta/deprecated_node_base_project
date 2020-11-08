@@ -4,7 +4,7 @@ import { Email, Name } from '../../../signup/business'
 
 import { DateNotProviderError } from '../errors/date.not.provider'
 
-export class User {
+export class UserEntity {
   private constructor (
     public readonly id: number,
     public readonly name: Name,
@@ -16,7 +16,7 @@ export class User {
     Object.freeze(this)
   }
 
-  public static create (params: UserParams): Either<BaseError, User> {
+  public static create (params: UserParams): Either<BaseError, UserEntity> {
     const name = Name.create(params.name)
     if (name.isLeft()) {
       return left(name.value)
@@ -33,6 +33,6 @@ export class User {
     const createdAt = new Date(params.createdAt)
     const updatedAt = new Date(params.updatedAt)
 
-    return right(new User(params.id, name.value, email.value, params.password, createdAt, updatedAt))
+    return right(new UserEntity(params.id, name.value, email.value, params.password, createdAt, updatedAt))
   }
 }

@@ -1,13 +1,13 @@
 import { Either, left, right, BaseError } from '../../../core/business'
 
-import { User } from '../../business'
+import { UserEntity } from '../../business'
 import { IUserRepository, RepositoryError } from '../../application'
 import { QueryTypes } from 'sequelize'
 
 export class UserRepository implements IUserRepository {
   constructor (private readonly _dbConnection: any) {}
 
-  public async findByEmail (email: string): Promise<Either<BaseError, User | undefined>> {
+  public async findByEmail (email: string): Promise<Either<BaseError, UserEntity | undefined>> {
     try {
       const user = await this._dbConnection.query(`
         SELECT id, name, email, password, created_at, updated_at
@@ -21,7 +21,7 @@ export class UserRepository implements IUserRepository {
       if (!user.length) {
         return right(undefined)
       }
-      const userEntity: Either<BaseError, User> = User.create({
+      const userEntity: Either<BaseError, UserEntity> = UserEntity.create({
         id: user[0].id,
         name: user[0].name,
         email: user[0].email,

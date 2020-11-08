@@ -1,6 +1,6 @@
 import { Either, BaseError } from '../../../core/business'
-import { User } from '../../business'
+import { UserEntity } from '../../business'
 
 export interface IUserRepository {
-  findByEmail: (email: string) => Promise<Either<BaseError, User | undefined>>
+  findByEmail: (email: string) => Promise<Either<BaseError, UserEntity | undefined>>
 }
