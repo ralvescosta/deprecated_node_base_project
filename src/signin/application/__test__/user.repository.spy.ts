@@ -1,18 +1,18 @@
 import { IUserRepository } from '../protocols/iuser.repository'
 import { Either, BaseError, right } from '../../../core/business'
-import { User } from '../../business'
+import { UserEntity } from '../../business'
 
 export class UserRepositorySpy implements IUserRepository {
-  public user: User;
+  public user: UserEntity;
 
   constructor () {
-    const user = User.create({ id: 1, name: 'name', email: 'email@email.com', password: 'password', createdAt: new Date(), updatedAt: new Date() })
+    const user = UserEntity.create({ id: 1, name: 'name', email: 'email@email.com', password: 'password', createdAt: new Date(), updatedAt: new Date() })
     if (user.isRight()) {
       this.user = user.value
     }
   }
 
-  public async findByEmail (email: string): Promise<Either<BaseError, User | undefined>> {
+  public async findByEmail (email: string): Promise<Either<BaseError, UserEntity | undefined>> {
     return right(this.user)
   }
 }
