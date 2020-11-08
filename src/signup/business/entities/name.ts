@@ -18,7 +18,7 @@ export class Name {
   }
 
   public static validate (name: string): boolean {
-    if (!name || name.length < 2 || name.length > 255) {
+    if (!name || name.length < 3 || name.length > 255) {
       return false
     }
     return true
