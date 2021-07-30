@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    container_name: app
+    restart: unless-stopped
+    build: .
+    ports:
+      - 4444:4444
+    environment:
+      - NODE_ENV=production
