@@ -1,6 +1,6 @@
 export interface ILogger {
-  trace: () => void
-  info: () => void
-  warn: () => void
-  error: () => void
+  trace: (d: any) => void
+  info: (d: any) => void
+  warn: (d: any) => void
+  error: (d: any) => void
 }

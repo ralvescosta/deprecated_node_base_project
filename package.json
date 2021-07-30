@@ -25,6 +25,7 @@
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-typescript": "^7.14.5",
     "@types/cors": "^2.8.12",
+    "@types/jest": "^26.0.24",
     "@types/node": "^16.4.7",
     "@types/pino": "^6.3.11",
     "@typescript-eslint/eslint-plugin": "^4.28.5",

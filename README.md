@@ -6,6 +6,6 @@ This project was created to be the base project for future projects. Based in Cl
 
 <div align=center>
 <image src="./docs/CleanArchitecture.jpg" width=550, height=400>
-<div>
+</div>
 
 # Get Started
