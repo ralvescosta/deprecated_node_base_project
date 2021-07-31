@@ -1,6 +1,6 @@
 import { HttpResponse } from '@infra/http_server/http'
-import { IControllerBase } from '@shared/i_controller_base'
-import { IHttpResponseFactory } from '@shared/i_http_response_factory'
+import IControllerBase from '@shared/i_controller_base'
+import IHttpResponseFactory from '@shared/i_http_response_factory'
 
 type Injection = {
   httpResponseFactory: IHttpResponseFactory

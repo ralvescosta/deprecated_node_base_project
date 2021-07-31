@@ -1,7 +1,7 @@
 import { Book } from '@business/entities/book'
 import { Either } from '@shared/either'
 
-export interface IBookRepository {
+export default interface IBookRepository {
   createBook:(book: Book) => Promise<Either<any, Book>>
   findBookById: (id: number) => Promise<Either<any, Book>>
   updateBook: (id: number, book: Book) => Promise<Either<any, Book>>

@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
-import { ILogger } from '@app/interfaces/i_logger'
+import ILogger from '@app/interfaces/i_logger'
 
 const server = express()
 export default ({ logger }: {logger: ILogger}) => ({

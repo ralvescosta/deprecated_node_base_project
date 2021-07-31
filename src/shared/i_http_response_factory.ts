@@ -1,7 +1,7 @@
 import { HttpResponse } from '@infra/http_server/http'
 
 export type Params = {body?: any, headers?: any}
-export interface IHttpResponseFactory {
+export default interface IHttpResponseFactory {
   ok: (params?: Params) => HttpResponse
   created: (params?: Params) => HttpResponse
   noContent: (params?: Params) => HttpResponse

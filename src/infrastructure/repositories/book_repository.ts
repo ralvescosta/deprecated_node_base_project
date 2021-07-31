@@ -1,5 +1,5 @@
-import { IBookRepository } from '@app/interfaces/i_book_repository'
-import { Book } from '@business/entities/book'
+import IBookRepository from '@app/interfaces/i_book_repository'
+import Book from '@business/entities/book'
 import { Either, right } from '@shared/either'
 
 export default (): IBookRepository => ({

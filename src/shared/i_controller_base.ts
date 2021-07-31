@@ -1,6 +1,6 @@
 import { HttpResponse } from '@infra/http_server/http'
 
-export interface IControllerBase {
+export default interface IControllerBase {
   create: () => Promise<HttpResponse>
   findOne: () => Promise<HttpResponse>
   findAll: () => Promise<HttpResponse>

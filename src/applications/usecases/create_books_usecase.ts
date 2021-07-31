@@ -1,6 +1,6 @@
-import { IBookRepository } from '@app/interfaces/i_book_repository'
-import { ILogger } from '@app/interfaces/i_logger'
-import { Book } from '@business/entities/book'
+import IBookRepository from '@app/interfaces/i_book_repository'
+import ILogger from '@app/interfaces/i_logger'
+import Book from '@business/entities/book'
 import { Either, left, right } from '@shared/either'
 
 type Injection = {

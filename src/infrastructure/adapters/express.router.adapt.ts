@@ -1,7 +1,7 @@
 
 import { HttpRequest, HttpResponse } from '@infra/http_server/http'
 import { Request, Response } from 'express'
-import { ILogger } from '@app/interfaces/i_logger'
+import ILogger from '@app/interfaces/i_logger'
 
 export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: ILogger) => {
   return async (req: Request, res: Response) => {

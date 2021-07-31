@@ -1,5 +1,5 @@
 import { HttpResponse } from '@infra/http_server/http'
-import { IHttpResponseFactory, Params } from './i_http_response_factory'
+import IHttpResponseFactory, { Params } from './i_http_response_factory'
 
 export default (): IHttpResponseFactory => ({
   ok: (params: Params = {}): HttpResponse => {

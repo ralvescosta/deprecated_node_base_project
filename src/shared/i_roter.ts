@@ -1,3 +1,3 @@
-export interface IRouter {
+export default interface IRouter {
   register: () => void
 }

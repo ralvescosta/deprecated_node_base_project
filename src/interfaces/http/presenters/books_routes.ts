@@ -1,7 +1,7 @@
-import { ILogger } from '@app/interfaces/i_logger'
+import ILogger from '@app/interfaces/i_logger'
 import RouterAdapt from '@infra/adapters/express.router.adapt'
-import { IControllerBase } from '@shared/i_controller_base'
-import { IRouter } from '@shared/i_roter'
+import IControllerBase from '@shared/i_controller_base'
+import IRouter from '@shared/i_roter'
 
 type Injection = {
   httpServer: any,
