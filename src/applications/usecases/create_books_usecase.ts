@@ -1,3 +1,4 @@
+import InternalError from '@app/erros/internal_error'
 import IBookRepository from '@app/interfaces/i_book_repository'
 import ILogger from '@app/interfaces/i_logger'
 import Book from '@business/entities/book'
@@ -13,7 +14,8 @@ export default ({ logger, bookRepository }: Injection) => ({
 
     const result = await bookRepository.createBook({} as any)
     if (result.isLeft()) {
-      return left(result.value)
+      logger.error({ message: 'Error when create a book in database', trace: result.value })
+      return left(new InternalError('some error occur'))
     }
 
     return right({} as Book)

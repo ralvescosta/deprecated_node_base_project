@@ -4,7 +4,6 @@ import { Either, right } from '@shared/either'
 
 export default (): IBookRepository => ({
    createBook: async (book: Book): Promise<Either<any, Book>> => {
-    console.log('BOOK CREATED')
     return right({} as Book)
   },
   findBookById: async (id: number): Promise<Either<any, Book>> => {

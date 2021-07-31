@@ -5,8 +5,9 @@ import HttpResponseFactory from '@shared/http_response_factory'
 import HttpServer from '@infra/http_server/http_server'
 
 import BookRepository from '@infra/repositories/book_repository'
-import BookRoutes from '@interfaces/http/presenters/books_routes'
+import CreateBookUsecase from '@app/usecases/create_books_usecase'
 import BookController from '@interfaces/http/controllers/books_controller'
+import BookRoutes from '@interfaces/http/presenters/books_routes'
 
 export const container = createContainer({
   injectionMode: InjectionMode.PROXY
@@ -22,6 +23,7 @@ export const registerInjections = (): AwilixContainer => {
     httpResponseFactory: asFunction(HttpResponseFactory).singleton(),
 
     bookRepository: asFunction(BookRepository).scoped(),
+    createBookUsecase: asFunction(CreateBookUsecase).scoped(),
     bookController: asFunction(BookController).singleton(),
     bookRoutes: asFunction(BookRoutes).singleton()
   })
