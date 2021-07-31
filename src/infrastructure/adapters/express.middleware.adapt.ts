@@ -1,41 +1,32 @@
-import { HttpRequest, HttpResponse } from '@infra/http_server/http'
-import { Request, Response } from 'express'
-import { ILogger } from '@app/interfaces/i_logger'
+import { Response, NextFunction } from 'express'
+import { HttpRequest } from '@infra/http_server/http'
+import { MiddlewareBase } from '@shared/middleware_base'
 
-export const RouteAdapt = (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: ILogger) => {
-  return async (req: Request, res: Response) => {
+export default (middleware: MiddlewareBase, ...params: any[]) => {
+  return async (req: any, res: Response, next: NextFunction) => {
     const httpRequest: HttpRequest = {
       headers: req.headers,
       body: req.body,
-      params: req.params,
-      auth: (req as any).auth,
-      query: req.query
+      auth: req.auth
     }
 
-    const resolve = await handler(httpRequest)
+    const resolve = await middleware.handler(httpRequest, params)
 
     if (resolve.statusCode >= 400) {
-      logger.error({
-        method: req.method,
-        path: req.path,
-        statusCode: resolve.statusCode,
-        requestBody: req.body,
-        requestHeader: req.headers,
-        responseBody: resolve.body,
-        responseHeader: resolve.headers
-      })
       return res.status(resolve.statusCode).header(resolve?.headers).json({ statusCode: resolve.statusCode, message: resolve.body })
     }
 
-    logger.info({
-      method: req.method,
-      path: req.path,
-      statusCode: resolve.statusCode,
-      requestBody: req.body,
-      requestHeader: req.headers,
-      responseBody: resolve.body,
-      responseHeader: resolve.headers
-    })
-    return res.status(resolve.statusCode).header(resolve?.headers).json(resolve.body)
+    if (resolve.statusCode === 299) {
+      if (req.auth === undefined) {
+        req.auth = resolve.body
+      } else {
+        req.auth = {
+          ...req.auth,
+          authorization: resolve.body
+        }
+      }
+    }
+
+    return next()
   }
 }
