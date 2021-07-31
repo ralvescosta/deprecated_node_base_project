@@ -6,8 +6,8 @@
   "author": "ralvescosta <rafael.rac.mg@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "NODE_ENV=development yarn nodemon -r tsconfig-paths/register src/main.ts",
-    "start:staging": "NODE_ENV=staging yarn nodemon -r tsconfig-paths/register src/main.ts",
+    "start:dev": "NODE_ENV=development yarn nodemon -r tsconfig-paths/register src/main.ts | pino-pretty",
+    "start:staging": "NODE_ENV=staging yarn nodemon -r tsconfig-paths/register src/main.ts | pino-pretty",
     "start": "NODE_ENV=production node dist/main.js",
     "build": "npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "awilix": "^4.3.4",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -55,6 +56,7 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.1.1",
     "nodemon": "^2.0.12",
+    "pino-pretty": "^5.1.2",
     "sequelize-cli": "^6.2.0",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",

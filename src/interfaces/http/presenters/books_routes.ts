@@ -1,17 +1,20 @@
 import { ILogger } from '@app/interfaces/i_logger'
 import RouterAdapt from '@infra/adapters/express.router.adapt'
+import { IControllerBase } from '@shared/i_controller_base'
+import { IRouter } from '@shared/i_roter'
 
 type Injection = {
-  server: any,
-  controller: any,
-  logger: ILogger
+  httpServer: any,
+  bookController: IControllerBase,
+  logger: ILogger,
+  httpResponseFactory: any
 }
-export default ({ server, controller, logger }: Injection) => ({
+export default ({ httpServer, bookController, logger }: Injection): IRouter => ({
   register (): void {
-    server.post('/books', RouterAdapt(controller.create.bind(controller), logger))
-    server.get('/books', RouterAdapt(controller.findAll.bind(controller), logger))
-    server.get('/books', RouterAdapt(controller.findOne.bind(controller), logger))
-    server.put('/books', RouterAdapt(controller.update.bind(controller), logger))
-    server.delete('/books', RouterAdapt(controller.delete.bind(controller), logger))
+    httpServer.registerRoute('post', '/v1/api/books', RouterAdapt(bookController.create!, logger))
+    httpServer.registerRoute('get', '/v1/api/books', RouterAdapt(bookController.findAll!, logger))
+    httpServer.registerRoute('get', '/v1/api/book/:id', RouterAdapt(bookController.findOne!, logger))
+    httpServer.registerRoute('put', '/v1/api/book/:id', RouterAdapt(bookController.update!, logger))
+    httpServer.registerRoute('delete', '/v1/api/book/:id', RouterAdapt(bookController.delete!, logger))
   }
 })

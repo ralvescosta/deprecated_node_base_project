@@ -1,5 +1,6 @@
 import Environments from './infrastructure/environments/environments'
 import { registerInjections } from './ioc'
+import routerConfig from './shared/router_config'
 
 ;(() => {
   Environments.registerEnvironments()
@@ -7,5 +8,7 @@ import { registerInjections } from './ioc'
 
   const { httpServer } = container.cradle
 
-  httpServer.initServer()
+  httpServer.setup()
+  routerConfig(container.cradle)
+  httpServer.run()
 })()

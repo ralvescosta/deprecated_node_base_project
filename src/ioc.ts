@@ -1,11 +1,15 @@
-import { createContainer, InjectionMode, asValue, AwilixContainer, asClass, asFunction } from 'awilix'
+import { createContainer, InjectionMode, asValue, AwilixContainer, asFunction } from 'awilix'
 import pino from 'pino'
 
-import HttpServer from './infrastructure/http_server/http_server'
-import BookRepository from './infrastructure/repositories/book_repository'
+import HttpResponseFactory from '@shared/http_response_factory'
+import HttpServer from '@infra/http_server/http_server'
+
+import BookRepository from '@infra/repositories/book_repository'
+import BookRoutes from '@interfaces/http/presenters/books_routes'
+import BookController from '@interfaces/http/controllers/books_controller'
 
 export const container = createContainer({
-  injectionMode: InjectionMode.CLASSIC
+  injectionMode: InjectionMode.PROXY
 })
 export const registerInjections = (): AwilixContainer => {
   const logger = pino({
@@ -14,8 +18,12 @@ export const registerInjections = (): AwilixContainer => {
   })
   container.register({
     logger: asValue(logger),
-    httpServer: asClass(HttpServer).singleton(),
-    bookRepository: asFunction(BookRepository).scoped()
+    httpServer: asFunction(HttpServer).singleton(),
+    httpResponseFactory: asFunction(HttpResponseFactory).singleton(),
+
+    bookRepository: asFunction(BookRepository).scoped(),
+    bookController: asFunction(BookController).singleton(),
+    bookRoutes: asFunction(BookRoutes).singleton()
   })
 
   return container

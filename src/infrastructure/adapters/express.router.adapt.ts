@@ -12,6 +12,13 @@ export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: IL
       auth: (req as any).auth,
       query: req.query
     }
+    logger.info({
+      method: req.method,
+      path: req.path,
+      type: 'request',
+      requestBody: req.body,
+      requestHeader: req.headers
+    })
 
     const resolve = await handler(httpRequest)
 
@@ -19,9 +26,8 @@ export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: IL
       logger.error({
         method: req.method,
         path: req.path,
+        type: 'response',
         statusCode: resolve.statusCode,
-        requestBody: req.body,
-        requestHeader: req.headers,
         responseBody: resolve.body,
         responseHeader: resolve.headers
       })
@@ -31,9 +37,8 @@ export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: IL
     logger.info({
       method: req.method,
       path: req.path,
+      type: 'response',
       statusCode: resolve.statusCode,
-      requestBody: req.body,
-      requestHeader: req.headers,
       responseBody: resolve.body,
       responseHeader: resolve.headers
     })
