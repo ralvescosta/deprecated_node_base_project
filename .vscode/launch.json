@@ -9,7 +9,8 @@
       "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only", "-r", "tsconfig-paths/register"],
       "args": ["src/main.ts"],
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "DEBUG": "true"
       },
       "cwd": "${workspaceRoot}",
       "internalConsoleOptions": "openOnSessionStart",
