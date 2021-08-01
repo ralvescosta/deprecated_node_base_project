@@ -1,6 +1,7 @@
 import { Left, left, Right, right } from '../../src/shared/either'
 
 describe('Either', () => {
+  beforeEach(() => jest.clearAllMocks())
   it('left()', () => {
     const l = left(new Error())
 

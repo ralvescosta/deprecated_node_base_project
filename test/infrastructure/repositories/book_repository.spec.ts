@@ -29,6 +29,7 @@ function makeSut () {
 }
 
 describe('BookRepository', () => {
+  beforeEach(() => jest.clearAllMocks())
   it('createBook()', async () => {
     const { sut, createBookMock } = makeSut()
 

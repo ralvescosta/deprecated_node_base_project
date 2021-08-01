@@ -7,6 +7,7 @@ function makeSut () {
 }
 
 describe('HttpResponseFactory', () => {
+  beforeEach(() => jest.clearAllMocks())
   it('ok()', () => {
     const { sut } = makeSut()
     const result = sut.ok()

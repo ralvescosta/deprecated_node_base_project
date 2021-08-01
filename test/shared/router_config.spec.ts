@@ -1,6 +1,7 @@
 import RouterConfig from '../../src/shared/router_config'
 
 describe('RouterConfig', () => {
+  beforeEach(() => jest.clearAllMocks())
   it('routerConfig()', () => {
     const cradle = {
       bookRoutes: {

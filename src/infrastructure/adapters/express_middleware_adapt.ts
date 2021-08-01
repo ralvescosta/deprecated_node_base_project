@@ -12,7 +12,7 @@ export default (middleware: any, ...params: any[]) => {
     const resolve = await middleware.handler(httpRequest, params)
 
     if (resolve.statusCode >= 400) {
-      return res.status(resolve.statusCode).header(resolve?.headers).json({ statusCode: resolve.statusCode, message: resolve.body })
+      return res.status(resolve.statusCode).header(resolve.headers).json({ statusCode: resolve.statusCode, message: resolve.body })
     }
 
     if (resolve.statusCode === 299) {
