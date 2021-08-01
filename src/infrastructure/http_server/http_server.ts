@@ -2,13 +2,15 @@ import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
+import compression from 'compression'
 import ILogger from '@app/interfaces/i_logger'
 
-const server = express()
+export const server = express()
 export default ({ logger }: {logger: ILogger}) => ({
   setup: (): void => {
    server.use(cors())
    server.use(helmet())
+   server.use(compression())
    server.use(bodyParser.json())
   },
 

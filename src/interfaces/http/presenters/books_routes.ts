@@ -7,7 +7,6 @@ type Injection = {
   httpServer: any,
   bookController: IControllerBase,
   logger: ILogger,
-  httpResponseFactory: any
 }
 export default ({ httpServer, bookController, logger }: Injection): IRouter => ({
   register (): void {
