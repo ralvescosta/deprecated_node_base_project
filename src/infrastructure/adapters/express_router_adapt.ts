@@ -31,7 +31,7 @@ export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: IL
         responseBody: resolve.body,
         responseHeader: resolve.headers
       })
-      return res.status(resolve.statusCode).header(resolve?.headers).json({ statusCode: resolve.statusCode, message: resolve.body })
+      return res.status(resolve.statusCode).header(resolve.headers).json({ statusCode: resolve.statusCode, message: resolve.body })
     }
 
     logger.info({
@@ -42,6 +42,6 @@ export default (handler: (req: HttpRequest) => Promise<HttpResponse>, logger: IL
       responseBody: resolve.body,
       responseHeader: resolve.headers
     })
-    return res.status(resolve.statusCode).header(resolve?.headers).json(resolve.body)
+    return res.status(resolve.statusCode).header(resolve.headers).json(resolve.body)
   }
 }

@@ -1,13 +1,13 @@
-import { Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from 'express'
 import { HttpRequest } from '@infra/http_server/http'
 import { MiddlewareBase } from '@shared/middleware_base'
 
 export default (middleware: MiddlewareBase, ...params: any[]) => {
-  return async (req: any, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const httpRequest: HttpRequest = {
       headers: req.headers,
       body: req.body,
-      auth: req.auth
+      auth: (req as any).auth
     }
 
     const resolve = await middleware.handler(httpRequest, params)
@@ -17,11 +17,11 @@ export default (middleware: MiddlewareBase, ...params: any[]) => {
     }
 
     if (resolve.statusCode === 299) {
-      if (req.auth === undefined) {
-        req.auth = resolve.body
+      if ((req as any).auth === undefined) {
+        (req as any).auth = resolve.body
       } else {
-        req.auth = {
-          ...req.auth,
+        (req as any).auth = {
+          ...(req as any).auth,
           authorization: resolve.body
         }
       }
