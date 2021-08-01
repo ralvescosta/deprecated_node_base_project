@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { HttpRequest } from '@infra/http_server/http'
-import { MiddlewareBase } from '@shared/middleware_base'
 
-export default (middleware: MiddlewareBase, ...params: any[]) => {
+export default (middleware: any, ...params: any[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const httpRequest: HttpRequest = {
       headers: req.headers,
