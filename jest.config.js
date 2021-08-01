@@ -4,7 +4,9 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/ioc.ts',
-    '!<rootDir>/src/main.ts'
+    '!<rootDir>/src/main.ts',
+    '!<rootDir>/src/infrastructure/database/**/*.(js|ts)',
+    '!<rootDir>/src/**/i_*.ts'
   ],
   coverageDirectory: 'coverage',
   coverageThreshold: {
@@ -24,7 +26,7 @@ module.exports = {
     '@app/(.*)': '<rootDir>/src/applications/$1',
     '@business/(.*)': '<rootDir>/src/business/$1',
     '@infra/(.*)': '<rootDir>/src/infrastructure/$1',
-    '@interfaces/(.*)': '<rootDir>/src/interfaces/$1'
-
+    '@interfaces/(.*)': '<rootDir>/src/interfaces/$1',
+    '@shared/(.*)': '<rootDir>/src/shared/$1'
   }
 }

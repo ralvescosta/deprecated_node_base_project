@@ -24,5 +24,5 @@
     "removeComments": true
   },
   "include": ["./src"],
-  "exclude": ["node_modules", "./src/**/*.spec.ts", "./src/**/__test__/"]
+  "exclude": ["node_modules"]
 }

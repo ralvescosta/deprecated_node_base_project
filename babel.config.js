@@ -26,6 +26,9 @@ module.exports = {
   ignore: [
     'node_modules',
     '**/*.spec.ts',
-    '**/applications/interfaces/'
+    '**/applications/interfaces/',
+    '**/business/dtos',
+    '**/business/entities',
+    '**/business/usecases'
   ]
 }

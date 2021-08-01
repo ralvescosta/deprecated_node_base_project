@@ -1,5 +1,5 @@
-import { Book } from '@business/entities/book'
-import { CreateBook } from '@business/dtos/create_book'
+import Book from '@business/entities/book'
+import CreateBook from '@business/dtos/create_book'
 import { dbConnection } from '../connection'
 
 import Sequelize, { Model } from 'sequelize'

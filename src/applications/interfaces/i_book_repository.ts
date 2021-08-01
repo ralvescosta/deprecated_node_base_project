@@ -1,9 +1,10 @@
-import { Book } from '@business/entities/book'
+import Book from '@business/entities/book'
+import BaseError from '@shared/base_error'
 import { Either } from '@shared/either'
 
 export default interface IBookRepository {
-  createBook:(book: Book) => Promise<Either<any, Book>>
-  findBookById: (id: number) => Promise<Either<any, Book>>
-  updateBook: (id: number, book: Book) => Promise<Either<any, Book>>
-  deleteBookById: (id: number) => Promise<Either<any, boolean>>
+  createBook:(book: Book) => Promise<Either<BaseError, Book>>
+  findBookById: (id: number) => Promise<Either<BaseError, Book>>
+  updateBook: (id: number, book: Book) => Promise<Either<BaseError, Book>>
+  deleteBookById: (id: number) => Promise<Either<BaseError, boolean>>
 }

@@ -2,6 +2,7 @@ import InternalError from '@app/erros/internal_error'
 import IBookRepository from '@app/interfaces/i_book_repository'
 import ILogger from '@app/interfaces/i_logger'
 import Book from '@business/entities/book'
+import BaseError from '@shared/base_error'
 import { Either, left, right } from '@shared/either'
 
 type Injection = {
@@ -9,7 +10,7 @@ type Injection = {
   bookRepository: IBookRepository
 }
 export default ({ logger, bookRepository }: Injection) => ({
-  perform: async (): Promise<Either<any, Book>> => {
+  perform: async (): Promise<Either<BaseError, Book>> => {
     logger.trace({ action: 'do something' })
 
     const result = await bookRepository.createBook({} as any)
