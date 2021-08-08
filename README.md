@@ -3,7 +3,7 @@
 ![node-current](https://img.shields.io/badge/node-14.17.4-brightgreen.svg)
 
 ## Contents
-- [GoLang Base Project](#nodejs-base-project)
+- [NodeJs Base Project](#nodejs-base-project)
   - [Contents](#contents)
   - [Resume](#resume)
   - [Project Structure](#project-structure)
